@@ -32,7 +32,7 @@ import org.projectnessie.model.{
 }
 
 import java.time.format.DateTimeParseException
-import java.time.{Instant, LocalDateTime, ZoneOffset}
+import java.time.{Instant, LocalDateTime, ZoneOffset, ZonedDateTime}
 import java.util.OptionalInt
 import scala.collection.JavaConverters._
 
@@ -61,6 +61,7 @@ object NessieUtils {
       .map(x => x.replaceAll("`", ""))
       .map(x => {
         try {
+//          ZonedDateTime.parse(x).toInstant
           LocalDateTime.parse(x).atZone(ZoneOffset.UTC).toInstant
         } catch {
           case e: DateTimeParseException =>
